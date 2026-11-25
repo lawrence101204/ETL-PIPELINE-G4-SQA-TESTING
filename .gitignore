@@ -1,0 +1,38 @@
+# Credentials
+.env
+.env.*
+!.env.example
+
+# Python environment
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+
+# Testing and coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Actual source datasets
+*.csv
+*.sql
+
+# Generated outputs
+*.log
+logs/
+load/backups/
+load/rejected/
+transformation/output/
+
+# IDE and system files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
