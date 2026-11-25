@@ -1,0 +1,43 @@
+﻿name: Paintelligent ETL - Automated SQA Testing
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  unit-testing:
+    name: ETL Pipeline Unit Testing
+    runs-on: windows-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+
+      - name: Set Up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.13.0'
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+
+      - name: Verify Python Environment
+        run: |
+          python --version
+          python -m pytest --version
+
+      - name: Execute All ETL Unit Tests
+        run: python run_tests.py all

@@ -1101,18 +1101,18 @@ def run_post_load_checks(
 
     # 6. Aggregate reconciliation (sales unit_sold, quantity, seasonal breakdown, and product prices)
     sales_df = incoming_dfs["sales_table"]
-    src_sales_sum = float(sales_df["unit_sold"].dropna().apply(lambda x: Decimal(str(x))).sum())
-    src_qty_sum = int(sales_df["quantity"].dropna().apply(lambda x: int(Decimal(str(x)))).sum())
+    src_sales_sum = float(sum((Decimal(str(x)) for x in sales_df["unit_sold"].dropna()), Decimal("0")))
+    src_qty_sum = int(sum(int(Decimal(str(x))) for x in sales_df["quantity"].dropna()))
 
     # Seasonal breakdown in source CSV (Dry Season vs Rainy Season)
     dry_mask = sales_df["season"].astype(str).str.strip().str.lower().isin({"dry", "dry season"})
     rainy_mask = sales_df["season"].astype(str).str.strip().str.lower().isin({"rainy", "rainy season", "wet", "wet season"})
     src_dry_rows = int(dry_mask.sum())
-    src_dry_sales = float(sales_df.loc[dry_mask, "unit_sold"].dropna().apply(lambda x: Decimal(str(x))).sum())
-    src_dry_qty = int(sales_df.loc[dry_mask, "quantity"].dropna().apply(lambda x: int(Decimal(str(x)))).sum())
+    src_dry_sales = float(sum((Decimal(str(x)) for x in sales_df.loc[dry_mask, "unit_sold"].dropna()), Decimal("0")))
+    src_dry_qty = int(sum(int(Decimal(str(x))) for x in sales_df.loc[dry_mask, "quantity"].dropna()))
     src_rainy_rows = int(rainy_mask.sum())
-    src_rainy_sales = float(sales_df.loc[rainy_mask, "unit_sold"].dropna().apply(lambda x: Decimal(str(x))).sum())
-    src_rainy_qty = int(sales_df.loc[rainy_mask, "quantity"].dropna().apply(lambda x: int(Decimal(str(x)))).sum())
+    src_rainy_sales = float(sum((Decimal(str(x)) for x in sales_df.loc[rainy_mask, "unit_sold"].dropna()), Decimal("0")))
+    src_rainy_qty = int(sum(int(Decimal(str(x))) for x in sales_df.loc[rainy_mask, "quantity"].dropna()))
 
     cur = conn.execute(
         "SELECT COALESCE(SUM(unit_sold), 0), COALESCE(SUM(quantity), 0) FROM sales_table WHERE batch_id = ?;",
@@ -1155,7 +1155,7 @@ def run_post_load_checks(
     db_rainy_qty = int(db_rainy_qty)
 
     prod_df = incoming_dfs["product_table"]
-    src_est_price_sum = float(prod_df["estimated_price_php"].dropna().apply(lambda x: Decimal(str(x))).sum())
+    src_est_price_sum = float(sum((Decimal(str(x)) for x in prod_df["estimated_price_php"].dropna()), Decimal("0")))
     cur = conn.execute(
         "SELECT COALESCE(SUM(estimated_price_php), 0) FROM product_table WHERE batch_id = ?;",
         (batch_id,),
@@ -1299,8 +1299,27 @@ def run_load() -> int:
     # Ensure single backup per batch_id
     backup_path = backup_target_database(batch_id)
 
-    conn = sqlite3.connect(TARGET_DB_PATH, timeout=30.0)
-    initialize_target_database(conn)
+    conn = None
+
+    try:
+        conn = sqlite3.connect(TARGET_DB_PATH, timeout=30.0)
+        initialize_target_database(conn)
+
+    except Exception as exc:
+        logger.exception(
+            "Database connection or initialization failed: %s",
+            exc,
+        )
+
+        if conn is not None:
+            try:
+                conn.close()
+            except Exception:
+                logger.exception(
+                    "Could not close failed database connection"
+                )
+
+        return 1
 
     rejected_records: list[dict[str, Any]] = []
     table_stats: dict[str, dict[str, Any]] = {}
