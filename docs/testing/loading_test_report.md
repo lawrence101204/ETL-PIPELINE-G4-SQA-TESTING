@@ -1,10 +1,10 @@
-﻿# Loading Unit Testing Report
+# Loading Unit Testing Report
 
 ## 1. Project Information
 
 - Project: Paintelligent ETL Pipeline
 - Subject: Software Quality Assurance
-- Test Author: Villalobos Lawrence C.
+- Test Authors: Haboc David Emannuel, Macalindong Trisha Anne, Villalobos Lawrence C.
 - Testing Date: November 25, 2026
 - Framework: Pytest 9.2.0
 - Test Suite: Loading

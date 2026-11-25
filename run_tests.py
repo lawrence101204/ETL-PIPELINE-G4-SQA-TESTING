@@ -1,5 +1,5 @@
 
-# Author: Villalobos Lawrence C.
+# Author: Haboc David Emannuel, Macalindong Trisha Anne, Villalobos Lawrence C.
 # Date: 2026-11-25
 # Description: Custom Pytest Terminal Reporter
 # Project: Paintelligent ETL Pipeline - SQA Testing
@@ -201,9 +201,12 @@ def print_header(suite):
     )
 
     print(
-        colored("Test Author: ", GRAY)
-        + "Villalobos Lawrence C."
+        colored("Test Authors: ", GRAY)
+        + "Haboc David Emannuel"
     )
+
+    print(" " * 14 + "Macalindong Trisha Anne")
+    print(" " * 14 + "Villalobos Lawrence C.")
 
     print(
         colored("Framework  : ", GRAY)

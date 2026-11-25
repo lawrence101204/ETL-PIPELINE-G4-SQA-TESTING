@@ -14,7 +14,7 @@
 
 | Information | Details |
 |---|---|
-| Author | Villalobos Lawrence C. |
+| Authors | Haboc David Emannuel, Macalindong Trisha Anne, Villalobos Lawrence C. |
 | Subject | Software Quality Assurance |
 | Project | Paintelligent ETL Pipeline |
 | Testing Date | November 25, 2026 |

@@ -8,7 +8,7 @@
 - Test Suite: Extraction
 - Testing Framework: Pytest
 - Testing Date: November 25, 2026
-- Test Author: Villalobos Lawrence C.
+- Test Authors: Haboc David Emannuel, Macalindong Trisha Anne, Villalobos Lawrence C.
 
 ## 2. Testing Objective
 

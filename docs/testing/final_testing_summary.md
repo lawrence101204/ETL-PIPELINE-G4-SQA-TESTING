@@ -1,9 +1,9 @@
-﻿# Paintelligent ETL Pipeline
+# Paintelligent ETL Pipeline
 ## Software Quality Assurance - Final Unit Testing Report
 
 ### Project Information
 
-- Author: Villalobos Lawrence C.
+- Authors: Haboc David Emannuel, Macalindong Trisha Anne, Villalobos Lawrence C.
 - Date: November 25, 2026
 - Framework: Pytest 9.2.0
 - Python Version: 3.13.0
