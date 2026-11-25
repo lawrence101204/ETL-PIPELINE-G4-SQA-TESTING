@@ -154,7 +154,14 @@ def get_extracted_data() -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame, str]
     products_df, sales_df = csv_module.extract_both_csvs()
     analysis_df = analysis_module.extract_specific_columns(
         "paint_analysis_history",
-        ["color_hex", "rgb", "paint_components", "analysis_date"],
+        [
+            "id",
+            "color_hex",
+            "rgb",
+            "paint_components",
+            "analysis_date",
+        ],
+        raise_on_error=True,
     )
 
     return products_df, sales_df, analysis_df, "NOT_RETURNED_BY_EXTRACTOR"
