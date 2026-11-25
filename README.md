@@ -222,4 +222,73 @@ The primary keys are `product_id` for products, `sale_id` for sales, and `analys
 
 **Python** was selected for ETL processing because it can handle data extraction, cleaning, transformation, validation, automation, and analysis. It allows the exported datasets to be processed and prepared for business-oriented use.
 
-**SQLite** was selected for data storage because it is lightweight, simple to deploy, and does not require a separate database server. It provides SQL capabilities for querying and analyzing structured data, supporting outputs such as product performance and sales trends. 
+**SQLite** was selected for data storage because it is lightweight, simple to deploy, and does not require a separate database server. It provides SQL capabilities for querying and analyzing structured data, supporting outputs such as product performance and sales trends.
+
+## ETL Dataset Demonstration
+
+The project includes two AI-generated synthetic dataset batches
+based on the Paintelligent ETL data structure.
+
+### Test Team
+
+- Haboc David Emannuel
+- Macalindong Trisha Anne
+- Villalobos Lawrence C.
+
+### Dataset Structure
+
+Each dataset contains:
+
+- products.csv - 3 records
+- sales.csv - 4 records
+- paint_analysis.csv - 2 records
+
+Total: 9 records per dataset, 18 records overall.
+
+### Verified Demonstration Results
+
+| Metric | Success Dataset | Failed Dataset |
+|---|---|---|
+| Records read | 9 | 9 |
+| Records transformed | 9 | 6 |
+| Records quarantined | 0 | 3 |
+| Rejection rate | 0% | 33.33% |
+| Extraction | SUCCESS | SUCCESS |
+| Transformation | SUCCESS | MANUAL_REVIEW |
+| Loading | SUCCESS | FAILED |
+| SQLite records stored | 9 | 0 |
+| Final decision | APPROVED | REJECTED |
+| Exit code | 0 | 1 |
+
+The failed dataset contains a negative purchase price,
+a negative sales quantity, and an invalid RGB value.
+
+The pipeline blocks loading when the transformation
+rejection rate exceeds the allowable 1% threshold.
+
+### Run the Demonstration
+
+```powershell
+python demo_etl.py prepare
+python demo_etl.py success
+python demo_etl.py failed
+```
+
+Exit code 1 is expected for the failed scenario.
+
+### Storage and Output
+
+- Source format: CSV
+- Transformation: Python Pandas
+- Target storage: SQLite (paintelligent.db)
+- Output directory: demo_output/
+
+The demonstration uses the actual ETL implementation
+with a mocked Supabase connection and isolated SQLite
+databases. No actual business records are accessed.
+
+Generated output directories are excluded from Git
+because they can be reproduced using the demo script.
+
+Both scenarios were successfully verified on
+November 25, 2026.
