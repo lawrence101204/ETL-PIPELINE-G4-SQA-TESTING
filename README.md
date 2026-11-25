@@ -1,3 +1,188 @@
+<!-- SQA-TESTING-SECTION -->
+
+# Paintelligent ETL Pipeline - SQA Final Project
+
+![Automated Testing](https://github.com/lawrence101204/ETL-PIPELINE-G4-SQA-TESTING/actions/workflows/unit-testing.yml/badge.svg)
+
+![Tests](https://img.shields.io/badge/Tests-54%20Passed-brightgreen)
+![Required Cases](https://img.shields.io/badge/Required%20Cases-19%2F19-brightgreen)
+![Python](https://img.shields.io/badge/Python-3.13.0-blue)
+![Pytest](https://img.shields.io/badge/Pytest-9.2.0-blue)
+![Pass Rate](https://img.shields.io/badge/Pass%20Rate-100%25-brightgreen)
+
+## Project Information
+
+| Information | Details |
+|---|---|
+| Author | Villalobos Lawrence C. |
+| Subject | Software Quality Assurance |
+| Project | Paintelligent ETL Pipeline |
+| Testing Date | November 25, 2026 |
+| Testing Framework | Pytest 9.2.0 |
+| Programming Language | Python 3.13.0 |
+| Continuous Integration | GitHub Actions |
+
+## Project Overview
+
+This repository contains automated unit tests for the
+Paintelligent ETL Pipeline, covering Extraction,
+Transformation, and Loading.
+
+It is a separate testing repository created for the
+Software Quality Assurance final project.
+
+The original group repository remains separate.
+
+## Final Test Results
+
+| ETL Stage | Required | Additional | Passed | Failed |
+|---|---:|---:|---:|---:|
+| Extraction | 5 | 14 | 19 | 0 |
+| Transformation | 6 | 10 | 16 | 0 |
+| Loading | 8 | 11 | 19 | 0 |
+| Total | 19 | 35 | 54 | 0 |
+
+### Verified Execution Results
+
+| Environment | Passed | Failed | Execution Time |
+|---|---:|---:|---:|
+| Local Windows Environment | 54 | 0 | 7.01 seconds |
+| GitHub Actions | 54 | 0 | 3.04 seconds |
+
+All 19 required test cases and 35 additional
+test executions passed successfully.
+
+## Testing Features
+
+- Automated unit testing
+- Synthetic test datasets
+- Mocked database connections
+- Mocked extraction dependencies
+- Data completeness validation
+- Data consistency validation
+- Data transformation validation
+- Boundary value analysis
+- Duplicate record validation
+- Data integrity validation
+- Database error handling
+- Transaction rollback verification
+- Regression testing
+- Continuous integration
+- Custom terminal test reporter
+
+## Installation
+
+Clone this repository:
+
+```bash
+git clone https://github.com/lawrence101204/ETL-PIPELINE-G4-SQA-TESTING.git
+cd ETL-PIPELINE-G4-SQA-TESTING
+```
+
+Create a virtual environment:
+
+```powershell
+python -m venv .venv
+```
+
+Install dependencies:
+
+```powershell
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
+```
+
+## Running the Tests
+
+### All ETL Test Suites
+
+```powershell
+.\.venv\Scripts\python.exe run_tests.py all
+```
+
+### Extraction
+
+```powershell
+.\.venv\Scripts\python.exe run_tests.py extraction
+```
+
+### Transformation
+
+```powershell
+.\.venv\Scripts\python.exe run_tests.py transformation
+```
+
+### Loading
+
+```powershell
+.\.venv\Scripts\python.exe run_tests.py loading
+```
+
+### Standard Pytest Execution
+
+```powershell
+.\.venv\Scripts\python.exe -m pytest tests -v
+```
+
+## Expected Test Summary
+
+```text
+Total collected : 54
+Passed          : 54
+Failed          : 0
+Errors          : 0
+Skipped         : 0
+Pass rate       : 100.00%
+
+========== 54 PASSED ==========
+ALL TESTS PASSED SUCCESSFULLY
+
+Pytest exit code: 0
+```
+
+## Continuous Integration
+
+GitHub Actions automatically executes the unit tests
+when changes are pushed to the main branch or when
+a pull request targets the main branch.
+
+The workflow supports manual execution as well.
+
+[View GitHub Actions](https://github.com/lawrence101204/ETL-PIPELINE-G4-SQA-TESTING/actions)
+
+## Testing Documentation
+
+- [Extraction Test Report](docs/testing/extraction_test_report.md)
+- [Transformation Test Report](docs/testing/transformation_test_report.md)
+- [Loading Test Report](docs/testing/loading_test_report.md)
+- [Final Testing Summary](docs/testing/final_testing_summary.md)
+
+## Testing Evidence
+
+- [Extraction Results](reports/extraction_results.txt)
+- [Transformation Results](reports/transformation_results.txt)
+- [Loading Results](reports/loading_results.txt)
+- [Final Regression Results](reports/final_regression_results.txt)
+- [JUnit XML Results](reports/final_regression_results.xml)
+
+## Testing Scope and Limitations
+
+Tests use synthetic data, mocked dependencies, and
+isolated temporary directories.
+
+The 100% pass rate represents the executed test
+scenarios and does not indicate complete code coverage.
+
+Actual production database operations and complete
+end-to-end integration testing are outside the
+verified testing scope.
+
+The documented stock validation discrepancy remains
+subject to business-rule clarification.
+
+---
+
+# Original ETL Project Documentation
+
 # Lab 2 – Technical Metadata Documentation
 
 ## 1. Pipeline Metadata
